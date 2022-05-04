@@ -40,9 +40,9 @@ router.get('/products/:id', (req, res) => {
  ***********************************************************************/
 // Tu código acá
 
-router.post('/products', (req, res) => {
-	products.push(req.body);
-	res.status(200).json(products);
+router.post('/products/add', (req, res) => {
+	let pos = products.push(req.body);
+	res.status(200).json(products[pos]);
 });
 
 
@@ -55,7 +55,29 @@ router.post('/products', (req, res) => {
  **************************************************************************/
 // Tu código acá
 
+router.put('/products/:id', (req, res) => {
+	const {name, price, quantity} = req.body;
+	products.map(element => {
+		if (element.id === parseInt(req.params.id)) {
+			element.name = name;
+			element.price = price;
+			element.quantity = quantity;
+		}
+		return element;
+	});
+	res.status(200).json(products.find(element => element.id === parseInt(req.params.id)));
+});
 
+router.put('/products/:id/:name', (req, res) => {
+	const name = req.params.name;
+	products.map(element => {
+		if (element.id === parseInt(req.params.id)) {
+			element.name = name;
+		}
+		return element;
+	});
+	res.status(200).json(products.find(element => element.id === parseInt(req.params.id)));
+});
 
 
 
@@ -66,7 +88,10 @@ router.post('/products', (req, res) => {
  ***************************************************************************/
 // Tu código acá
 
-
+router.delete('/products/:id', (req, res) => {
+	products.splice(products.findIndex(element => element.id === parseInt(req.params.id)), 1);
+	res.status(200).json(products);
+});
 
 
 

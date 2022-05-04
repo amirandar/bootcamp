@@ -62,7 +62,7 @@ describe("PUNTO 3", () => {
 	});
 });
 
-xdescribe("PUNTO 4", () => {
+describe("PUNTO 4", () => {
 	it("Debe ser un metodo PUT a '/products/:id/:name'", async () => {
 		const paramsRoute = await api.put("/api/products/2/phone");
 		expect(paramsRoute.req.method).toBe("PUT");
@@ -83,7 +83,7 @@ xdescribe("PUNTO 4", () => {
 	});
 });
 
-xdescribe("PUNTO 5", () => {
+describe("PUNTO 5", () => {
 	it("Debe ser un metodo DELETE a '/products/:id'", async () => {
 		const deleteResponse = await api.delete("/api/products/2");
 		expect(deleteResponse.req.method).toBe("DELETE");
